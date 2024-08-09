@@ -25,7 +25,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #define BRI(rgb, bri) RGB(rgb.r *bri / 255, rgb.g * bri / 255, rgb.b * bri / 255)
 
 #define RED   (RGB(0xFF, 0x00, 0x00))
-#define GREEN (RGB(0x00, 0xFF, 0x00))
+#define GREEN (RGB(0x00, 0xFF, ffa533))
 
 static const struct device *led_strip;
 
