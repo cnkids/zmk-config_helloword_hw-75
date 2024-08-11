@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
 
     container:
       image: zmkfirmware/zmk-build-arm:stable
@@ -27,7 +27,7 @@ jobs:
         run: |
           apt-get update
           apt-get install -y python3-pip protobuf-compiler curl
-          curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+          curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
           apt-get install -y nodejs
           pip install -U fonttools
           npm install -g lv_font_conv
