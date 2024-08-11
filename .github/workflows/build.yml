@@ -21,7 +21,7 @@ jobs:
           echo "zephyr_version=${ZEPHYR_VERSION}" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up build tools
         run: |
@@ -76,7 +76,7 @@ jobs:
           cp build/zephyr/zmk.bin "build/artifacts/${{ matrix.board }}-zmk.bin"
 
       - name: Archive
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: firmware
           path: build/artifacts
