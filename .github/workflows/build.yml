@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - { board: hw75_keyboard@1.2, keymap: hw75_keyboard.keymap  }
+          - { board: hw75_keyboard@1.1, keymap: hw75_keyboard.keymap  }
 
     steps:
       - name: Prepare variables
