@@ -50,9 +50,9 @@ static inline struct led_rgb apply_brightness(struct led_rgb color, uint8_t bri)
 static void indicator_update(struct k_work *work)
 {
 	if (!settings.enable) {
-		unsigned int key = irq_lock();
+		//unsigned int key = irq_lock();
 		led_strip_remap_clear(led_strip, STRIP_INDICATOR_LABEL);
-		irq_unlock(key);
+		//irq_unlock(key);
 		return;
 	}
 
