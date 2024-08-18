@@ -25,7 +25,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #define BRI(rgb, bri) RGB(rgb.r *bri / 255, rgb.g * bri / 255, rgb.b * bri / 255)
 
 #define RED   (RGB(0xFF, 0x00, 0x00))
-#define GREEN (RGB(0x00, 0xFF, 0x00))
+#define GREEN (RGB(0x80, 0xFF, 0x80))
 
 static const struct device *led_strip;
 
@@ -64,9 +64,9 @@ static void indicator_update(struct k_work *work)
 	LOG_DBG("Update indicator, color: %02X%02X%02X, brightness: %d -> %02X%02X%02X", current.r,
 		current.g, current.b, bri, color.r, color.g, color.b);
 
-	unsigned int key = irq_lock();
+	//unsigned int key = irq_lock();
 	led_strip_remap_set(led_strip, STRIP_INDICATOR_LABEL, &color);
-	irq_unlock(key);
+	//irq_unlock(key);
 }
 
 K_WORK_DEFINE(indicator_update_work, indicator_update);
@@ -159,9 +159,9 @@ static void indicator_preview_brightness(uint8_t brightness)
 	LOG_DBG("Preview indicator, color: %02X%02X%02X, brightness: %d -> %02X%02X%02X", current.r,
 		current.g, current.b, brightness, color.r, color.g, color.b);
 
-	unsigned int key = irq_lock();
+	//unsigned int key = irq_lock();
 	led_strip_remap_set(led_strip, "STATUS", &color);
-	irq_unlock(key);
+	//irq_unlock(key);
 
 	k_work_reschedule(&indicator_clear_preview_work, K_MSEC(2000));
 }
