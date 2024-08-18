@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     container:
       image: zmkfirmware/zmk-build-arm:stable
@@ -26,7 +26,7 @@ jobs:
       - name: Set up build tools
         run: |
           apt-get update
-          apt-get install -y python3-pip protobuf-compiler curl python3-xyz python3-full pipx
+          apt-get install -y python3-pip protobuf-compiler curl 
           curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
           apt-get install -y nodejs
           pip install -U fonttools
