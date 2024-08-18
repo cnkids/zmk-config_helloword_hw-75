@@ -26,10 +26,12 @@ jobs:
       - name: Set up build tools
         run: |
           apt-get update
-          apt-get install -y protobuf-compiler curl pipx
+          apt-get install -y protobuf-compiler curl python3-pip
           curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
           apt-get install -y nodejs
-          pipx install fonttools
+          python3 -m venv .venv
+          source .venv/bin/activate
+          python3 -m pip install -U fonttools
           npm install -g lv_font_conv
 
       - name: Cache west modules
@@ -53,7 +55,7 @@ jobs:
           west init -l config
           west update
           west zephyr-export
-          pipx install zephyr/scripts/requirements.txt
+          python3 -m pip install -r zephyr/scripts/requirements.txt
           git config --global --add safe.directory $PWD
 
       - name: West build
