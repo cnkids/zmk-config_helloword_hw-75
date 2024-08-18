@@ -50,9 +50,9 @@ static inline struct led_rgb apply_brightness(struct led_rgb color, uint8_t bri)
 static void indicator_update(struct k_work *work)
 {
 	if (!settings.enable) {
-		//unsigned int key = irq_lock();
+		unsigned int key = irq_lock();
 		led_strip_remap_clear(led_strip, STRIP_INDICATOR_LABEL);
-		//irq_unlock(key);
+		irq_unlock(key);
 		return;
 	}
 
@@ -64,9 +64,9 @@ static void indicator_update(struct k_work *work)
 	LOG_DBG("Update indicator, color: %02X%02X%02X, brightness: %d -> %02X%02X%02X", current.r,
 		current.g, current.b, bri, color.r, color.g, color.b);
 
-	//unsigned int key = irq_lock();
+	unsigned int key = irq_lock();
 	led_strip_remap_set(led_strip, STRIP_INDICATOR_LABEL, &color);
-	//irq_unlock(key);
+	irq_unlock(key);
 }
 
 K_WORK_DEFINE(indicator_update_work, indicator_update);
@@ -159,9 +159,9 @@ static void indicator_preview_brightness(uint8_t brightness)
 	LOG_DBG("Preview indicator, color: %02X%02X%02X, brightness: %d -> %02X%02X%02X", current.r,
 		current.g, current.b, brightness, color.r, color.g, color.b);
 
-	//unsigned int key = irq_lock();
+	unsigned int key = irq_lock();
 	led_strip_remap_set(led_strip, "STATUS", &color);
-	//irq_unlock(key);
+	irq_unlock(key);
 
 	k_work_reschedule(&indicator_clear_preview_work, K_MSEC(2000));
 }
