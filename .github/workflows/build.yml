@@ -52,7 +52,8 @@ jobs:
           west init -l config
           west update
           west zephyr-export
-          pipx install -f -r zephyr/scripts/requirements.txt
+          pipx install cookiecutter
+          pipx runpip cookiecutter install -r zephyr/scripts/requirements.txt
           git config --global --add safe.directory $PWD
 
       - name: West build
