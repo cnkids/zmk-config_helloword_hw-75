@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:stable
 
@@ -28,10 +28,10 @@ jobs:
       - name: Set up build tools
         run: |
           apt-get update
-          apt-get install -y python3-pip protobuf-compiler curl
+          apt-get install -y pipx protobuf-compiler curl
           curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
           apt-get install -y nodejs
-          pip install -U fonttools
+          pipx install fonttools
           npm install -g lv_font_conv
 
       - name: Cache west modules
@@ -55,7 +55,8 @@ jobs:
           west init -l config
           west update
           west zephyr-export
-          pip install -r zephyr/scripts/requirements.txt
+          pipx install cookiecutter
+          pipx runpip cookicutter install -r zephyr/scripts/requirements.txt
           git config --global --add safe.directory $PWD
 
       - name: West build
