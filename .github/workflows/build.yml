@@ -13,9 +13,6 @@ jobs:
       matrix:
         include:
           - { board: hw75_keyboard@1.1, keymap: hw75_keyboard.keymap  }
-          - { board: hw75_keyboard@1.2, keymap: hw75_keyboard.keymap  }
-          - { board: hw75_dynamic@A,    keymap: hw75_dynamic.keymap   }
-          - { board: hw75_dynamic@B,    keymap: hw75_dynamic.keymap   }
 
     steps:
       - name: Prepare variables
@@ -55,8 +52,7 @@ jobs:
           west init -l config
           west update
           west zephyr-export
-          pipx install cookiecutter
-          pipx runpip cookicutter install -r zephyr/scripts/requirements.txt
+          pipx install -f -r zephyr/scripts/requirements.txt
           git config --global --add safe.directory $PWD
 
       - name: West build
