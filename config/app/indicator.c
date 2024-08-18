@@ -38,7 +38,7 @@ static struct indicator_settings settings = {
 static struct k_mutex lock;
 
 static struct led_rgb current;
-static bool active = true;
+static bool active = false;
 
 static uint32_t state = 0;
 
