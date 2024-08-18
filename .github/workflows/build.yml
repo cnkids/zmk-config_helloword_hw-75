@@ -25,8 +25,8 @@ jobs:
 
       - name: Set up build tools
         run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pip protobuf-compiler curl python3-venv
+          apt-get update
+          apt-get install -y python3-pip protobuf-compiler curl python3-venv
           curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
           apt-get install -y nodejs
           python3 -m venv ~/config/.venv
