@@ -46,7 +46,7 @@
 			label = "SCROLL_DOWN";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = <0>;
-			bindings = <&macro_tap     &lvkp LV_KEY_RIGHT>;
+			bindings = <&macro_tap     &lvkp LV_KEY_DOWN>;
 		};
 
 		scroll_up: scroll-up {
@@ -101,7 +101,7 @@
 		volume {
 			label = "音量";
 			icon = [EF 86 AE];
-			bindings = <&lvkp LV_KEY_RIGHT &lvkp LV_KEY_ENTER>;
+			bindings = <&lvkp LV_KEY_DOWN &lvkp LV_KEY_ENTER>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
