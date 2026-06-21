@@ -18,7 +18,7 @@ lv_obj_t *zmk_display_status_screen()
 	lv_group_t *group = lv_group_create();
 
 	lv_obj_t *screen = lv_obj_create(NULL);
-	lv_obj_set_style_bg_color(screen, lv_color_make(0xFF, 0x80, 0x00), 0);
+	lv_obj_set_style_bg_color(screen, lv_color_black(), 0);
 	lv_obj_set_style_bg_opa(screen, LV_OPA_COVER, 0);
 	layer_status_init(screen, group);
 	knob_status_init(screen);
