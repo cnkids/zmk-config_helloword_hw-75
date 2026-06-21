@@ -94,7 +94,7 @@
 		volume {
 			label = "音量";
 			icon = [EF 86 AE];
-			bindings = <&lvkp LV_KEY_PREV &lvkp LV_KEY_ENTER>;
+			bindings = <&lvkp LV_KEY_DOWN &lvkp LV_KEY_ENTER>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
