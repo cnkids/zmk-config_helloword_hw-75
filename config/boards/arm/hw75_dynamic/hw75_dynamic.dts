@@ -101,9 +101,9 @@
 		profile_spring: spring@3 {
 			compatible = "zmk,knob-profile-spring";
 			reg = <3>;
-			torque-limit-mv = <1500>;
-			velocity-pid = <50 0 0>;
-			angle-pid = <100000 0 3500>;
+			torque-limit-mv = <800>;
+			velocity-pid = <30 0 0>;
+			angle-pid = <50000 0 2000>;
 			minimal-movement-deg = <20>;
 		};
 
