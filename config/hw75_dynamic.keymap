@@ -71,6 +71,13 @@
 			#sensor-binding-cells = <0>;
 			bindings = <&scroll_down>, <&scroll_up>;
 		};
+
+		win_p_rotate: win-p-rotate {
+			compatible = "zmk,behavior-sensor-rotate";
+			label = "WIN_P_ROTATE";
+			#sensor-binding-cells = <0>;
+			bindings = <&win_p>, <&win_p>;
+		};
 	};
 
 	keymap {
@@ -80,7 +87,7 @@
 			label = "窗口";
 			icon = [EF 85 9E];
 			bindings = <&trans &trans>;
-			sensor-bindings = <&win_p>;
+			sensor-bindings = <&win_p_rotate>;
 			profile = <&profile_spring>;
 		};
 
