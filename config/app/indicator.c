@@ -24,8 +24,8 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 #define RGB(R, G, B)  ((struct led_rgb){.r = (R), .g = (G), .b = (B)})
 #define BRI(rgb, bri) RGB(rgb.r *bri / 255, rgb.g * bri / 255, rgb.b * bri / 255)
 
-#define RED   (RGB(0xFF, 0x80, 0x00))
-#define GREEN (RGB(0x80, 0xFF, 0x80))
+#define ORANGE (RGB(0xFF, 0x80, 0x00))
+#define WHITE  (RGB(0xFF, 0xFF, 0xFF))
 
 static const struct device *led_strip;
 
@@ -56,7 +56,7 @@ static void indicator_update(struct k_work *work)
 		return;
 	}
 
-	current = state ? RED : GREEN;
+	current = state ? WHITE : ORANGE;
 
 	uint8_t bri = active ? settings.brightness_active : settings.brightness_inactive;
 	struct led_rgb color = BRI(current, bri);
