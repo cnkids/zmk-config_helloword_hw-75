@@ -86,7 +86,7 @@
 		tasks {
 			label = "窗口";
 			icon = [EF 85 9E];
-			bindings = <&trans &trans>;
+			bindings = <&trans &win_p>;
 			sensor-bindings = <&scroll_nav>;
 			profile = <&profile_spring>;
 		};
