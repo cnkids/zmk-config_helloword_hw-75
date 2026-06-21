@@ -122,7 +122,7 @@ int layer_status_init(lv_obj_t *parent, lv_group_t *group)
 		lv_obj_add_style(btn, &st_item, LV_PART_MAIN);
 		lv_obj_add_style(btn, &st_item_focused, LV_PART_MAIN | LV_STATE_FOCUSED);
 		lv_obj_set_size(btn, ITEM_SIZE, ITEM_SIZE);
-		lv_obj_add_event_cb(btn, layer_button_selected, LV_EVENT_FOCUSED, (void *)i);
+		lv_obj_add_event_cb(btn, layer_button_selected, LV_EVENT_CLICKED, (void *)i);
 
 		lv_obj_t *label = lv_obj_get_child(btn, 0);
 		lv_obj_set_flex_grow(label, 0);
