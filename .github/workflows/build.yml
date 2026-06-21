@@ -26,6 +26,7 @@ jobs:
           apt-get install -y nodejs
           pip install west --break-system-packages
           pip install -U fonttools --break-system-packages
+          pip install "protobuf>=4.21,<5" --break-system-packages
           npm install -g lv_font_conv
 
       - name: Cache west modules
