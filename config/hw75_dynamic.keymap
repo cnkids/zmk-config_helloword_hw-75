@@ -87,7 +87,7 @@
 			label = "窗口";
 			icon = [EF 85 9E];
 			bindings = <&trans &trans>;
-			sensor-bindings = <&win_p_rotate>;
+			sensor-bindings = <&scroll_nav>;
 			profile = <&profile_spring>;
 		};
 
