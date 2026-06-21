@@ -109,7 +109,7 @@
 			label = "滚动";
 			icon = [EF 86 8A];
 			bindings = <&trans &lvkp LV_KEY_NEXT>;
-			sensor-bindings = <&scroll_nav>;
+			sensor-bindings = <&inc_dec_mw MW_DN(1) MW_UP(1)>;
 		};
 	};
 };
