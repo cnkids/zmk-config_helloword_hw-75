@@ -46,14 +46,14 @@
 			label = "SCROLL_DOWN";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = <0>;
-			bindings = <&macro_tap     &lvkp LV_KEY_NEXT>;
+			bindings = <&macro_tap     &kp DOWN>;
 		};
 
 		scroll_up: scroll-up {
 			label = "SCROLL_UP";
 			compatible = "zmk,behavior-macro";
 			#binding-cells = <0>;
-			bindings = <&macro_tap     &lvkp LV_KEY_ENTER>;
+			bindings = <&macro_tap     &kp ENTER>;
 		};
 	};
 
@@ -94,14 +94,14 @@
 		volume {
 			label = "音量";
 			icon = [EF 86 AE];
-			bindings = <&lvkp LV_KEY_ENTER &lvkp LV_KEY_NEXT>;
+			bindings = <&trans &lvkp LV_KEY_NEXT>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
 		scroll {
 			label = "滚动";
 			icon = [EF 86 8A];
-			bindings = <&lvkp LV_KEY_ENTER &lvkp LV_KEY_NEXT>;
+			bindings = <&trans &lvkp LV_KEY_NEXT>;
 			sensor-bindings = <&inc_dec_mw MW_DN(1) MW_UP(1)>;
 		};
 	};
