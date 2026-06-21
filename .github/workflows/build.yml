@@ -16,7 +16,7 @@ jobs:
           echo "zephyr_version=${ZEPHYR_VERSION}" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up build tools
         run: |
@@ -29,7 +29,7 @@ jobs:
           npm install -g lv_font_conv
 
       - name: Cache west modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         continue-on-error: true
         env:
           cache_name: cache-zephyr-${{ env.zephyr_version }}-modules
@@ -72,7 +72,7 @@ jobs:
           cp build/zephyr/zmk.bin "build/artifacts/hw75_dynamic-zmk.bin"
 
       - name: Archive
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: firmware
           path: build/artifacts
