@@ -32,6 +32,29 @@
 				   <&macro_release &kp LSHIFT>,
 				   <&macro_release &kp LALT>;
 		};
+
+		win_p: win-p {
+			label = "WIN_P";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			bindings = <&macro_press   &kp LGUI>,
+				   <&macro_tap     &kp P>,
+				   <&macro_release &kp LGUI>;
+		};
+
+		scroll_down: scroll-down {
+			label = "SCROLL_DOWN";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			bindings = <&macro_tap     &lvkp LV_KEY_DOWN>;
+		};
+
+		scroll_up: scroll-up {
+			label = "SCROLL_UP";
+			compatible = "zmk,behavior-macro";
+			#binding-cells = <0>;
+			bindings = <&macro_tap     &lvkp LV_KEY_ENTER>;
+		};
 	};
 
 	behaviors {
@@ -41,15 +64,30 @@
 			#sensor-binding-cells = <0>;
 			bindings = <&tasks_forward>, <&tasks_backward>;
 		};
+
+		scroll_nav: scroll-nav {
+			compatible = "zmk,behavior-sensor-rotate";
+			label = "SCROLL_NAV";
+			#sensor-binding-cells = <0>;
+			bindings = <&scroll_down>, <&scroll_up>;
+		};
 	};
 
 	keymap {
 		compatible = "zmk,keymap-ext", "zmk,keymap";
 
+		tasks {
+			label = "窗口";
+			icon = [EF 85 9E];
+			bindings = <&trans &trans>;
+			sensor-bindings = <&win_p>;
+			profile = <&profile_spring>;
+		};
+
 		volume {
 			label = "音量";
 			icon = [EF 86 AE];
-			bindings = <&lvkp LV_KEY_PREV &lvkp LV_KEY_NEXT>;
+			bindings = <&lvkp LV_KEY_PREV &lvkp LV_KEY_ENTER>;
 			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 		};
 
@@ -57,29 +95,7 @@
 			label = "滚动";
 			icon = [EF 86 8A];
 			bindings = <&trans &trans>;
-			sensor-bindings = <&inc_dec_mw MW_DN(1) MW_UP(1)>;
-		};
-
-		tasks {
-			label = "窗口";
-			icon = [EF 85 9E];
-			bindings = <&trans &trans>;
-			sensor-bindings = <&switch_tasks>;
-			profile = <&profile_spring>;
-		};
-
-		arrow_vertical {
-			label = "上下";
-			icon = [EF 86 93];
-			bindings = <&trans &trans>;
-			sensor-bindings = <&inc_dec_kp UP DOWN>;
-		};
-
-		arrow_horizontal {
-			label = "左右";
-			icon = [EF 86 9C];
-			bindings = <&trans &trans>;
-			sensor-bindings = <&inc_dec_kp LEFT RIGHT>;
+			sensor-bindings = <&scroll_nav>;
 		};
 	};
 };
