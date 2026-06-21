@@ -55,13 +55,6 @@
 			#binding-cells = <0>;
 			bindings = <&macro_tap     &lvkp LV_KEY_ENTER>;
 		};
-
-		scroll_up: scroll-up {
-			label = "SCROLL_UP";
-			compatible = "zmk,behavior-macro";
-			#binding-cells = <0>;
-			bindings = <&macro_tap     &lvkp LV_KEY_ENTER>;
-		};
 	};
 
 	behaviors {
