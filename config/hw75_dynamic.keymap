@@ -58,11 +58,11 @@
 	};
 
 	behaviors {
-		switch_tasks: switch-tasks {
+		window_nav: window-nav {
 			compatible = "zmk,behavior-sensor-rotate";
-			label = "SWITCH_TASKS";
+			label = "WINDOW_NAV";
 			#sensor-binding-cells = <0>;
-			bindings = <&tasks_forward>, <&tasks_backward>;
+			bindings = <&scroll_down>, <&scroll_up>;
 		};
 
 		scroll_nav: scroll-nav {
@@ -71,38 +71,31 @@
 			#sensor-binding-cells = <0>;
 			bindings = <&scroll_down>, <&scroll_up>;
 		};
-
-		win_p_rotate: win-p-rotate {
-			compatible = "zmk,behavior-sensor-rotate";
-			label = "WIN_P_ROTATE";
-			#sensor-binding-cells = <0>;
-			bindings = <&win_p>, <&win_p>;
-		};
 	};
 
 	keymap {
 		compatible = "zmk,keymap-ext", "zmk,keymap";
 
-		tasks {
-			label = "窗口";
-			icon = [EF 85 9E];
-			bindings = <&win_p &lvkp LV_KEY_NEXT>;
-			sensor-bindings = <&scroll_nav>;
-			profile = <&profile_spring>;
-		};
+	tasks {
+		label = "窗口";
+		icon = [EF 85 9E];
+		bindings = <&win_p &lvkp LV_KEY_PREV>;
+		sensor-bindings = <&window_nav>;
+		profile = <&profile_spring>;
+	};
 
-		volume {
-			label = "音量";
-			icon = [EF 86 AE];
-			bindings = <&trans &lvkp LV_KEY_NEXT>;
-			sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-		};
+	volume {
+		label = "音量";
+		icon = [EF 86 AE];
+		bindings = <&lvkp LV_KEY_NEXT &lvkp LV_KEY_PREV>;
+		sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+	};
 
-		scroll {
-			label = "滚动";
-			icon = [EF 86 8A];
-			bindings = <&trans &lvkp LV_KEY_NEXT>;
-			sensor-bindings = <&inc_dec_mw MW_DN(1) MW_UP(1)>;
-		};
+	scroll {
+		label = "滚动";
+		icon = [EF 86 8A];
+		bindings = <&trans &lvkp LV_KEY_PREV>;
+		sensor-bindings = <&scroll_nav>;
+	};
 	};
 };
