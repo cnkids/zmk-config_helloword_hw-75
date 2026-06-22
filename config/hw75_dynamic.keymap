@@ -79,7 +79,7 @@
 	tasks {
 		label = "窗口";
 		icon = [EF 85 9E];
-		bindings = <&win_p &lvkp LV_KEY_PREV>;
+		bindings = <&win_p &lvkp LV_KEY_NEXT>;
 		sensor-bindings = <&window_nav>;
 		profile = <&profile_spring>;
 	};
@@ -87,14 +87,14 @@
 	volume {
 		label = "音量";
 		icon = [EF 86 AE];
-		bindings = <&lvkp LV_KEY_NEXT &lvkp LV_KEY_PREV>;
+		bindings = <&trans &lvkp LV_KEY_NEXT>;
 		sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
 	};
 
 	scroll {
 		label = "滚动";
 		icon = [EF 86 8A];
-		bindings = <&trans &lvkp LV_KEY_PREV>;
+		bindings = <&trans &lvkp LV_KEY_NEXT>;
 		sensor-bindings = <&scroll_nav>;
 	};
 	};
