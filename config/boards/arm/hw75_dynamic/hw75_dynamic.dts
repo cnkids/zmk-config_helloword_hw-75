@@ -47,8 +47,8 @@
 	kscan: kscan {
 		compatible = "zmk,kscan-gpio-direct";
 		input-gpios =
-			<&gpioc 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
-			<&gpioc 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+			<&gpioc 8 GPIO_ACTIVE_LOW>,
+			<&gpioc 9 GPIO_ACTIVE_LOW>;
 		debounce-press-ms = <30>;
 		debounce-release-ms = <50>;
 	};
