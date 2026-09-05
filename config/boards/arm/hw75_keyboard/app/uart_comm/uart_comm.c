@@ -14,8 +14,11 @@ LOG_MODULE_REGISTER(uart_comm, CONFIG_HW75_UART_COMM_LOG_LEVEL);
 #include <pb_encode.h>
 
 #include "report/report.h"
+#include "uart_comm_crc.h"
 
 #define SLIP_NODE DT_ALIAS(uart_comm)
+
+#define UART_COMM_CRC_LEN sizeof(uint16_t)
 
 static uint8_t uart_tx_buf[CONFIG_HW75_UART_COMM_MAX_TX_MESSAGE_SIZE];
 
@@ -32,5 +35,9 @@ bool uart_comm_report(uart_comm_MessageK2D *k2d)
 		return false;
 	}
 
-	return uart_slip_send(slip, uart_tx_buf, k2d_stream.bytes_written) == 0;
+	uint16_t crc = uart_comm_crc16(uart_tx_buf, k2d_stream.bytes_written);
+	uart_tx_buf[k2d_stream.bytes_written] = crc & 0xFF;
+	uart_tx_buf[k2d_stream.bytes_written + 1] = (crc >> 8) & 0xFF;
+
+	return uart_slip_send(slip, uart_tx_buf, k2d_stream.bytes_written + UART_COMM_CRC_LEN) == 0;
 }

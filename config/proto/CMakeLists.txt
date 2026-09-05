@@ -16,6 +16,7 @@ endif()
 
 if(CONFIG_HW75_PROTO_UART_COMM)
     list(APPEND PROTO_DEFS uart_comm.proto)
+    zephyr_library_sources(uart_comm_crc.c)
 endif()
 
 nanopb_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTO_DEFS})
@@ -23,5 +24,6 @@ zephyr_library_sources(${PROTO_SRCS} ${PROTO_HDRS})
 
 zephyr_include_directories(${NANOPB_INCLUDE_DIRS})
 zephyr_include_directories(${CMAKE_CURRENT_BINARY_DIR})
+zephyr_include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 endif() # CONFIG_HW75_PROTO

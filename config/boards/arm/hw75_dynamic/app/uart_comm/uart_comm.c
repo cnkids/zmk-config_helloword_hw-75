@@ -14,8 +14,11 @@ LOG_MODULE_REGISTER(uart_comm, CONFIG_HW75_UART_COMM_LOG_LEVEL);
 #include <pb_decode.h>
 
 #include "handler/handler.h"
+#include "uart_comm_crc.h"
 
 #define SLIP_NODE DT_ALIAS(uart_comm)
+
+#define UART_COMM_CRC_LEN sizeof(uint16_t)
 
 static uint8_t uart_rx_buf[CONFIG_HW75_UART_COMM_MAX_RX_MESSAGE_SIZE];
 
@@ -31,11 +34,33 @@ static struct {
 	{ uart_comm_Action_FN_STATE_CHANGED, handle_fn_state },
 };
 
+static bool uart_comm_crc_check(uint32_t len)
+{
+	if (len < UART_COMM_CRC_LEN) {
+		LOG_WRN("RX message too short: %d", len);
+		return false;
+	}
+
+	uint16_t crc = uart_comm_crc16(uart_rx_buf, len - UART_COMM_CRC_LEN);
+	uint16_t rx_crc = (uint16_t)uart_rx_buf[len - 2] | ((uint16_t)uart_rx_buf[len - 1] << 8);
+
+	if (crc != rx_crc) {
+		LOG_WRN("RX message CRC mismatch");
+		return false;
+	}
+
+	return true;
+}
+
 static void uart_comm_handle(uint32_t len)
 {
 	LOG_HEXDUMP_DBG(uart_rx_buf, len, "RX");
 
-	pb_istream_t k2d_stream = pb_istream_from_buffer(uart_rx_buf, len);
+	if (!uart_comm_crc_check(len)) {
+		return;
+	}
+
+	pb_istream_t k2d_stream = pb_istream_from_buffer(uart_rx_buf, len - UART_COMM_CRC_LEN);
 
 	uart_comm_MessageK2D k2d = uart_comm_MessageK2D_init_zero;
 	if (!pb_decode_delimited(&k2d_stream, uart_comm_MessageK2D_fields, &k2d)) {
